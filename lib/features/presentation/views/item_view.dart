@@ -78,7 +78,7 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
               positiveButtonText: 'OK',
               positiveButtonTap: () {
                 Navigator.pop(context);
-                Navigator.pop(context);
+                //Navigator.pop(context);
               },
             );
           } else if (state is VerifyItemFailedState) {

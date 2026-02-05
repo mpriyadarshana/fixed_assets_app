@@ -89,6 +89,9 @@ class ItemBloc extends Bloc<ItemEvent, ItemState> {
             "----------------------${response.data}++++++++++++++++++++++++++++++++");
         emit(VerifyItemSuccessState());
       }
+      else{
+        emit(VerifyItemFailedState());
+      }
     } catch (e) {
       emit(VerifyItemFailedState());
     }

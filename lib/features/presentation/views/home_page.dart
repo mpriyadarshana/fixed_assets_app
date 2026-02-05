@@ -178,7 +178,7 @@ class _HomePageState extends State<HomePage> {
                                     if (result != null) {
                                       print('Scanned QR: $result');
                                       setState(() {});
-                                      Navigator.pushReplacement(
+                                      Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
