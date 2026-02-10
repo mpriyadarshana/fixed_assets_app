@@ -1,3 +1,4 @@
+import 'package:fixed_assets_app/utils/app_constants.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils/app_styles.dart';
@@ -60,14 +61,14 @@ class ProfileView extends StatelessWidget {
                   ),
                   const SizedBox(height: 15),
                   Text(
-                    'Asiri Govinda',
+                    '${AppConstants.firstname + " " + AppConstants.lastname}',
                     textAlign: TextAlign.center,
                     style: AppStyles.semiTextSize20White
                         .copyWith(color: const Color(0xff5c5c5c)),
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'info@accmt.ac.lk',
+                    '${AppConstants.email + "@accimt.ac.lk"}',
                     textAlign: TextAlign.center,
                     style: AppStyles.regularTextSize15White
                         .copyWith(color: const Color(0xff5c5c5c)),

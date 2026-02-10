@@ -8,4 +8,7 @@ class AppConstants {
   static List<Datum> historyItems = [];
 
   //user login
+  static String firstname = "";
+  static String lastname = "";
+  static String email = "";
 }

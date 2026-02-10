@@ -43,6 +43,9 @@ class _LoginPageState extends State<LoginPage> {
           hideProgressBar();
           setState(() {
             AppConstants.jwtToken = state.token;
+            AppConstants.firstname = state.firstname;
+            AppConstants.lastname = state.lastname;
+            AppConstants.email = state.email;
           });
           Navigator.pushReplacement(
             context,

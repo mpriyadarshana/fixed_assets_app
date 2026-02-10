@@ -71,19 +71,27 @@ class Response {
 class Modell {
   String token;
   String email;
+  String firstname;
+  String lastname;
 
   Modell({
     required this.token,
     required this.email,
+    required this.firstname,
+    required this.lastname,
   });
 
   factory Modell.fromJson(Map<String, dynamic> json) => Modell(
     token: json["token"],
     email: json["email"],
+    firstname: json["firstname"],
+    lastname: json["lastname"],
   );
 
   Map<String, dynamic> toJson() => {
     "token": token,
     "email": email,
+    "firstname": firstname,
+    "lastname": lastname,
   };
 }

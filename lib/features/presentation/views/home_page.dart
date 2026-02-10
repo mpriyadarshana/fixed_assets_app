@@ -114,13 +114,13 @@ class _HomePageState extends State<HomePage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Asiri Govinda',
+                                  AppConstants.firstname + " " + AppConstants.lastname,
                                   style: AppStyles.mediumTextSize18White.copyWith(
                                     color: const Color(0xff5C5C5C),
                                   ),
                                 ),
                                 Text(
-                                  'name@gmail.com',
+                                  AppConstants.email +  '@accimt.ac.lk',
                                   style:
                                       AppStyles.regularTextSize12White.copyWith(
                                     color: const Color(0xff5C5C5C),

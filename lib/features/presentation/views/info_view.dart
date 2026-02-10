@@ -92,7 +92,7 @@ class AppInfoView extends StatelessWidget {
                       ),
                       const SizedBox(width: 5),
                       Text(
-                        'info@accmt.ac.lk',
+                        'info@accimt.ac.lk',
                         textAlign: TextAlign.center,
                         style: AppStyles.lightTextSize12White
                             .copyWith(color: const Color(0xff5c5c5c)),

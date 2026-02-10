@@ -52,7 +52,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
       if (res.statusCode == 200) {
         final LoginResponse loginResponse = loginResponseFromJson(res.data);
-        emit(LoginSuccessState(token: loginResponse.data.response.model.token));
+        emit(LoginSuccessState(token: loginResponse.data.response.model.token, firstname: loginResponse.data.response.model.firstname, lastname: loginResponse.data.response.model.lastname, email: loginResponse.data.response.model.email));
       }else if (res.statusCode == 401) {
         emit(LoginFailedState(error: '401'));
       }

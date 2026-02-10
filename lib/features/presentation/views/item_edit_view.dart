@@ -64,11 +64,7 @@ class _ItemEditViewState extends State<ItemEditView> {
           showProgress();
         } else if (state is ModifyItemSuccessState) {
           hideProgressBar();
-          Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => const HomePage()),
-            (route) => false,
-          );
+          Navigator.pop(context);
         } else if (state is ModifyItemFailedState) {
           hideProgressBar();
           CustomDialogBox.show(context,
