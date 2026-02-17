@@ -88,7 +88,7 @@ class _ItemEditViewState extends State<ItemEditView> {
         }
       },
       child: Scaffold(
-        backgroundColor: const Color(0xffCADADA),
+        backgroundColor: const Color(0xffc8c8c8),
         appBar: AppBar(
           centerTitle: true,
           title: Text(

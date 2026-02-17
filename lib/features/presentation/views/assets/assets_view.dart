@@ -1,11 +1,19 @@
-import 'package:fixed_assets_app/utils/app_constants.dart';
+import 'package:fixed_assets_app/features/presentation/views/assets/widget/asset_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../../../utils/app_styles.dart';
+import '../../../../utils/app_styles.dart';
+import '../../../data/models/response/assets_reponse.dart';
 
-class ProfileView extends StatelessWidget {
-  const ProfileView({super.key});
+class AppAssetsView extends StatefulWidget {
+  final List<Datum> assets;
 
+  const AppAssetsView({super.key, required this.assets});
+
+  @override
+  State<AppAssetsView> createState() => _AssetsViewState();
+}
+
+class _AssetsViewState extends State<AppAssetsView> {
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
@@ -15,7 +23,12 @@ class ProfileView extends StatelessWidget {
       backgroundColor: const Color(0xffc8c8c8),
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Colors.white,
+        title: Text(
+          'Assets Inventory',
+          style: AppStyles.semiBoldTextSize15White.copyWith(
+            color: const Color(0xff5c5c5c),
+          ),
+        ),
         leading: Padding(
           padding: const EdgeInsets.all(5.0),
           child: InkWell(
@@ -42,39 +55,29 @@ class ProfileView extends StatelessWidget {
             ),
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: const Color(0xffc8c8c8).withOpacity(0.5),
-                        width: 5,
-                      ),
+              child: widget.assets.isNotEmpty
+                  ? ListView.builder(
+                shrinkWrap: true,
+                itemCount: widget.assets.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 5, top: 5),
+                    child: AssetCard(
+                      itemID: widget.assets[index].id,
+                      code: widget.assets[index].code,
+                      model: widget.assets[index].model,
+                      serialNo: widget.assets[index].serialNo,
+                      description: widget.assets[index].description,
                     ),
-                    child: const CircleAvatar(
-                      radius: 70,
-                      backgroundImage: NetworkImage(
-                          'https://t3.ftcdn.net/jpg/04/23/59/74/360_F_423597477_AKCjGMtevfCi9XJG0M8jter97kG466y7.jpg'),
-                    ),
-                  ),
-                  const SizedBox(height: 15),
-                  Text(
-                    '${AppConstants.firstname + " " + AppConstants.lastname}',
-                    textAlign: TextAlign.center,
-                    style: AppStyles.semiTextSize20White
-                        .copyWith(color: const Color(0xff5c5c5c)),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    '${AppConstants.email + "@accimt.ac.lk"}',
-                    textAlign: TextAlign.center,
-                    style: AppStyles.regularTextSize15White
-                        .copyWith(color: const Color(0xff5c5c5c)),
-                  ),
-                  const SizedBox(height: 90),
-                ],
+                  );
+                },
+              )
+                  : Center(
+                child: Text(
+                  'No any Items history records !!',
+                  style: AppStyles.regularItalicTextSize15White
+                      .copyWith(color: Colors.black45, fontSize: 20),
+                ),
               ),
             ),
           ),

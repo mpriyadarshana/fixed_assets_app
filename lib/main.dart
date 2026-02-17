@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       const SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
           statusBarBrightness: Brightness.light,
-          systemNavigationBarColor: Color(0xffCADADA),
+          systemNavigationBarColor: Color(0xffc8c8c8),
           systemNavigationBarIconBrightness: Brightness.dark),
     );
 

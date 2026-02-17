@@ -11,7 +11,7 @@ class AppInfoView extends StatelessWidget {
     final double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: const Color(0xffCADADA),
+      backgroundColor: const Color(0xffc8c8c8),
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.white,

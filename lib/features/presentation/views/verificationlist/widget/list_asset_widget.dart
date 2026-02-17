@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:fixed_assets_app/features/presentation/widgets/label_value_row.dart';
 import 'package:fixed_assets_app/features/presentation/widgets/label_value_column.dart';
 
+
 import '../../../../../utils/app_styles.dart';
 
-class HistoryCard extends StatelessWidget {
+
+class AssetCard extends StatelessWidget {
   final int? itemID;
   final String? code;
   final String? model;
   final String? serialNo;
   final String? description;
 
-  const HistoryCard({
+  const AssetCard({
     super.key,
     this.itemID,
     this.code,
@@ -29,10 +31,7 @@ class HistoryCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 15,
-          vertical: 10,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -41,7 +40,8 @@ class HistoryCard extends StatelessWidget {
               children: [
                 const CircleAvatar(
                   backgroundImage: NetworkImage(
-                      'https://cdn.shopify.com/s/files/1/0073/0169/3551/files/playstation-legend-pedestal-2021029_1_abf77133-6820-4c4a-b19b-84fc0b491173.jpg?v=1697461959'),
+                    'https://cdn.shopify.com/s/files/1/0073/0169/3551/files/playstation-legend-pedestal-2021029_1_abf77133-6820-4c4a-b19b-84fc0b491173.jpg?v=1697461959',
+                  ),
                   radius: 30,
                 ),
                 const SizedBox(width: 15),

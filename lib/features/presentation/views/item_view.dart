@@ -44,7 +44,7 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
     final double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: const Color(0xffCADADA),
+      backgroundColor: const Color(0xffc8c8c8),
       body: BlocListener<ItemBloc, ItemState>(
         bloc: bloc,
         listener: (context, state) {
@@ -181,7 +181,7 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
                                   color: const Color(
                                     0xff5c5c5c,
                                   ),
-                                  fontSize: 26),
+                                  fontSize: 32),
                             ),
                             SizedBox(height: height * 0.03),
                             Row(
@@ -210,10 +210,10 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
                                 ),
                                 Text(
                                   serialNo,
-                                  style: AppStyles.regularTextSize12White
+                                  style: AppStyles.semiBoldTextSize30
                                       .copyWith(
                                           color: const Color(0xff5c5c5c),
-                                          fontSize: 13),
+                                          fontSize: 25),
                                 ),
                               ],
                             ),

@@ -67,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
         }
       },
       child: Scaffold(
-        backgroundColor: const Color(0xffCADADA),
+        backgroundColor: const Color(0xffc8c8c8),
         body: SingleChildScrollView(
           child: Column(
             children: [

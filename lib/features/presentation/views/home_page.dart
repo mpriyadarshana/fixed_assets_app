@@ -2,6 +2,8 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:fixed_assets_app/features/presentation/views/Scan/scan_view.dart';
+import 'package:fixed_assets_app/features/presentation/views/assets/assets_view.dart';
+import 'package:fixed_assets_app/features/presentation/views/verificationlist/verificationlist_view.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:fixed_assets_app/features/presentation/bloc/item/item_bloc.dart';
 import 'package:fixed_assets_app/features/presentation/bloc/login/login_bloc.dart';
@@ -18,6 +20,8 @@ import 'package:lottie/lottie.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../../utils/app_styles.dart';
+import '../bloc/assets/assets_bloc.dart';
+import '../bloc/verificationlist/verification_list_bloc.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -28,7 +32,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool _isProgressShow = false;
-  final ItemBloc bloc = ItemBloc();
+  final ItemBloc itembloc = ItemBloc();
+  final AssetsBloc assetsbloc = AssetsBloc();
+  final VerificationListBloc verificationListBloc = VerificationListBloc();
   final LoginBloc loginBloc = LoginBloc();
 
   Barcode? _barcode;
@@ -64,26 +70,63 @@ class _HomePageState extends State<HomePage> {
 
     return AnnotatedRegion(
       value: SystemUiOverlayStyle.dark,
-      child: BlocListener<ItemBloc, ItemState>(
-        bloc: bloc,
-        listener: (context, state) {
-          if (state is ItemLoadingState) {
-          } else if (state is GetLocalHistorySuccessState) {
-            setState(() {
-              AppConstants.historyItems = state.historyItems;
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => HistoryView(
-                    items: state.historyItems,
+      child: MultiBlocListener(listeners: [
+        BlocListener<ItemBloc, ItemState>(
+          bloc: itembloc,
+          listener: (context, state) {
+            if (state is ItemLoadingState) {
+            } else if (state is GetLocalHistorySuccessState) {
+              setState(() {
+                AppConstants.historyItems = state.historyItems;
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HistoryView(
+                      items: state.historyItems,
+                    ),
                   ),
-                ),
-              );
-            });
-          }
-        },
-        child: Scaffold(
-          backgroundColor: const Color(0xffCADADA),
+                );
+              });
+            }
+          },
+        ),
+        BlocListener<AssetsBloc, AssetsState>(
+          bloc: assetsbloc,
+          listener: (context, state) {
+            if (state is AssetsGetSuccessfulState) {
+              setState(() {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AppAssetsView(
+                      assets: state.assetsDetailsResponse,
+                    ),
+                  ),
+                );
+              });
+            }
+          },
+        ),
+        BlocListener<VerificationListBloc, VerificationListState>(
+          bloc: verificationListBloc,
+          listener: (context, state) {
+            if (state is VerificationListGetSuccessfulState) {
+              setState(() {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => VerificationlistView(
+                      assets: state.verificationListResponse ,
+                    ),
+                  ),
+                );
+              });
+            }
+          },
+        ),
+
+      ], child: Scaffold(
+          backgroundColor: const Color(0xffc8c8c8),
           body: Column(
             children: [
               Container(
@@ -100,10 +143,18 @@ class _HomePageState extends State<HomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const SizedBox(height: 30),
-                        Row(
-                          children: [
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const ProfileView()));
+                            },
+                            child:
+                              Row(
+                                children: [
                             const CircleAvatar(
-                              backgroundColor: Color(0xffCADADA),
+                              backgroundColor: Color(0xffc8c8c8),
                               radius: 30,
                               backgroundImage: NetworkImage(
                                 'https://t3.ftcdn.net/jpg/04/23/59/74/360_F_423597477_AKCjGMtevfCi9XJG0M8jter97kG466y7.jpg',
@@ -143,7 +194,8 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                           ],
-                        ),
+                              ),
+                          ),
                         SizedBox(height: height * 0.05),
                         Text(
                           'Welcome to',
@@ -215,7 +267,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                               InkWell(
                                 onTap: () async {
-                                  bloc.add(GetHistoryItemsEvent());
+                                  itembloc.add(GetHistoryItemsEvent());
                                 },
                                 child: Container(
                                   height: 150,
@@ -241,11 +293,8 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                               InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => const ProfileView()));
+                                onTap: () async {
+                                  verificationListBloc.add(GetVerificationListEvent(username: AppConstants.email));
                                 },
                                 child: Container(
                                   height: 150,
@@ -262,15 +311,42 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   child: Center(
                                     child: Text(
-                                      'Profile',
+                                      'List',
                                       style: AppStyles.mediumTextSize20White
                                           .copyWith(
-                                              color: const Color(0xff5C5C5C)),
+                                          color: const Color(0xff5C5C5C)),
                                     ),
                                   ),
                                 ),
                               ),
                               InkWell(
+                                onTap: () async {
+                                  assetsbloc.add(GetAssetsEvent(username: AppConstants.email));
+                                },
+                                child: Container(
+                                  height: 150,
+                                  width: 150,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(30),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black12.withOpacity(0.09),
+                                        blurRadius: 30,
+                                      ),
+                                    ],
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      'Assets',
+                                      style: AppStyles.mediumTextSize20White
+                                          .copyWith(
+                                          color: const Color(0xff5C5C5C)),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              /*InkWell(
                                 onTap: () {
                                   Navigator.push(
                                       context,
@@ -299,7 +375,7 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                   ),
                                 ),
-                              ),
+                              ),*/
                             ],
                           ),
                         ),

@@ -20,7 +20,7 @@ class _IpConfigViewState extends State<IpConfigView> {
     TextEditingController ipController = TextEditingController(text: '192.168.87.34');
 
     return Scaffold(
-      backgroundColor: const Color(0xffCADADA),
+      backgroundColor: const Color(0xffc8c8c8),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

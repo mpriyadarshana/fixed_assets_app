@@ -11,7 +11,7 @@ class Repository {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? itemsJson = prefs.getString(key);
     if (itemsJson == null) return [];
-    List<dynamic> decoded = jsonDecode(itemsJson);
+    List<dynamic> decoded = jsonDecode(itemsJson).reversed;
     return decoded.map((e) => Datum.fromJson(e)).toList();
   }
 

@@ -49,7 +49,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
                 radius: 8,
                 borderRadius: BorderRadius.circular(5),
                 highlightColor: Colors.transparent,
-                splashColor: const Color(0xffCADADA).withOpacity(0.9),
+                splashColor: const Color(0xffc8c8c8).withOpacity(0.9),
                 onTap: widget.isObsecure
                     ? () {
                         setState(() {

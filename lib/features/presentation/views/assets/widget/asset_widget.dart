@@ -4,14 +4,14 @@ import 'package:fixed_assets_app/features/presentation/widgets/label_value_colum
 
 import '../../../../../utils/app_styles.dart';
 
-class HistoryCard extends StatelessWidget {
+class AssetCard extends StatelessWidget {
   final int? itemID;
   final String? code;
   final String? model;
   final String? serialNo;
   final String? description;
 
-  const HistoryCard({
+  const AssetCard({
     super.key,
     this.itemID,
     this.code,
@@ -49,10 +49,10 @@ class HistoryCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      LabelValueRow(title: 'Item ID :  ', value: (itemID ?? 0).toString()),
-                      LabelValueRow(title: 'Code :  ', value: (code ?? '').toString()),
-                      LabelValueRow(title: 'Model No.:  ', value: model ?? ''),
-                      LabelValueRow(title: 'Serial No.:  ', value: serialNo ?? ''),
+                        LabelValueRow(title: 'Item ID :  ', value: (itemID ?? 0).toString()),
+                        LabelValueRow(title: 'Code :  ', value: (code ?? '').toString()),
+                        LabelValueRow(title: 'Model No.:  ', value: model ?? ''),
+                        LabelValueRow(title: 'Serial No.:  ', value: serialNo ?? ''),                  
                     ],
                   ),
                 ),
