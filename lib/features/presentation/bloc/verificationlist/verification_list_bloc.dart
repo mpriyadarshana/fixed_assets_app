@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:fixed_assets_app/utils/app_constants.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../data/models/model/asset.dart';
 import '../../../data/models/response/verification_list_reponse.dart';
 
 
@@ -32,14 +33,15 @@ class VerificationListBloc extends Bloc<VerificationListEvent, VerificationListS
       );
 
       print('receive verification list response');
-      print(response);
+      //print(response);
 
       if (response.statusCode == 200) {
 
-        print('Data : ${response.data['data'][0]}');
+        //print('Data : ${response.data['data'][1]}');
 
-        List<Datum> res = VerificationListResponse.fromJson(response.data).data;
+        List<dynamic> res = VerificationListResponse.fromJson(response.data).data;
         print("----------------------${response.statusCode}++++++++++++++++++++++++++++++++");
+        print(res);
 
         //await Repository.saveItem(res);
         emit(VerificationListGetSuccessfulState(verificationListResponse: res));

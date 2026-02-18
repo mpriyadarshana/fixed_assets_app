@@ -5,6 +5,7 @@ import 'package:fixed_assets_app/features/data/repositories/repository.dart';
 import 'package:fixed_assets_app/utils/app_constants.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../data/models/model/asset.dart';
 import '../../../data/models/request/modify_item_request.dart';
 
 part 'item_event.dart';
@@ -43,7 +44,7 @@ class ItemBloc extends Bloc<ItemEvent, ItemState> {
 
         print('Data : ${response.data['data'][0]}');
 
-        Datum res = ItemDetailsResponse.fromJson(response.data).data[0];
+        Asset res = ItemDetailsResponse.fromJson(response.data).data[0];
         print("----------------------${response.statusCode}++++++++++++++++++++++++++++++++");
 
         await Repository.saveItem(res);

@@ -116,7 +116,7 @@ class _HomePageState extends State<HomePage> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => VerificationlistView(
-                      assets: state.verificationListResponse ,
+                      locationgroups: state.verificationListResponse ,
                     ),
                   ),
                 );

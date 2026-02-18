@@ -7,7 +7,7 @@ final class AssetsInitial extends AssetsState {}
 class AssetsLoadingState extends AssetsState {}
 
 class AssetsGetSuccessfulState extends AssetsState {
-  final List<Datum> assetsDetailsResponse;
+  final List<Asset> assetsDetailsResponse;
 
   AssetsGetSuccessfulState({required this.assetsDetailsResponse});
 }

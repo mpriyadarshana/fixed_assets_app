@@ -7,7 +7,7 @@ final class VerificationListInitial extends VerificationListState {}
 class VerificationListLoadingState extends VerificationListState {}
 
 class VerificationListGetSuccessfulState extends VerificationListState {
-  final List<Datum> verificationListResponse;
+  final List<dynamic> verificationListResponse;
 
   VerificationListGetSuccessfulState({required this.verificationListResponse});
 }

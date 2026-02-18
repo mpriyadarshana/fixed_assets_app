@@ -2,10 +2,11 @@ import 'package:fixed_assets_app/features/presentation/views/history/widget/hist
 import 'package:flutter/material.dart';
 
 import '../../../../utils/app_styles.dart';
+import '../../../data/models/model/asset.dart';
 import '../../../data/models/response/item_details_reponse.dart';
 
 class HistoryView extends StatefulWidget {
-  final List<Datum> items;
+  final List<Asset> items;
 
   const HistoryView({super.key, required this.items});
 

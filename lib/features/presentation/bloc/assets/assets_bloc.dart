@@ -3,6 +3,8 @@ import 'package:fixed_assets_app/features/data/models/response/assets_reponse.da
 import 'package:fixed_assets_app/utils/app_constants.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../data/models/model/asset.dart';
+
 
 part 'assets_event.dart';
 
@@ -37,7 +39,7 @@ class AssetsBloc extends Bloc<AssetsEvent, AssetsState> {
 
         print('Data : ${response.data['data'][0]}');
 
-        List<Datum> res = AssetsDetailsResponse.fromJson(response.data).data;
+        List<Asset> res = AssetsDetailsResponse.fromJson(response.data).data;
         print("----------------------${response.statusCode}++++++++++++++++++++++++++++++++");
 
         //await Repository.saveItem(res);

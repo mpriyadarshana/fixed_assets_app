@@ -2,10 +2,11 @@ import 'package:fixed_assets_app/features/presentation/views/assets/widget/asset
 import 'package:flutter/material.dart';
 
 import '../../../../utils/app_styles.dart';
+import '../../../data/models/model/asset.dart';
 import '../../../data/models/response/assets_reponse.dart';
 
 class AppAssetsView extends StatefulWidget {
-  final List<Datum> assets;
+  final List<Asset> assets;
 
   const AppAssetsView({super.key, required this.assets});
 

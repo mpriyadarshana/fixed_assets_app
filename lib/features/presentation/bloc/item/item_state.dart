@@ -7,7 +7,7 @@ final class ItemInitial extends ItemState {}
 class ItemLoadingState extends ItemState {}
 
 class ItemGetSuccessfulState extends ItemState {
-  final Datum itemDetailsResponse;
+  final Asset itemDetailsResponse;
 
   ItemGetSuccessfulState({required this.itemDetailsResponse});
 }
@@ -27,7 +27,7 @@ class ModifyItemSuccessState extends ItemState {}
 class ModifyItemFailedState extends ItemState {}
 
 class GetLocalHistorySuccessState extends ItemState {
-  final List<Datum> historyItems;
+  final List<Asset> historyItems;
 
   GetLocalHistorySuccessState({required this.historyItems});
 }

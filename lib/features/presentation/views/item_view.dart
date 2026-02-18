@@ -10,6 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../utils/app_styles.dart';
+import '../../data/models/model/asset.dart';
 
 class ItemDetailsView extends StatefulWidget {
   final String itemId;
@@ -24,7 +25,7 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
   final ItemBloc bloc = ItemBloc();
   bool _isProgressShow = false;
 
-  late Datum item;
+  late Asset item;
   int id = 0;
   String description = '';
   String model = '';

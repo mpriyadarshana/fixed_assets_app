@@ -2,13 +2,14 @@ import 'package:fixed_assets_app/features/presentation/views/verificationlist/wi
 import 'package:flutter/material.dart';
 
 import '../../../../utils/app_styles.dart';
+import '../../../data/models/model/asset.dart';
 import '../../../data/models/response/verification_list_reponse.dart';
 
 
 class VerificationlistView extends StatefulWidget {
-  final List<Datum> assets;
+  final List<dynamic> locationgroups;
 
-  const VerificationlistView({super.key, required this.assets});
+  const VerificationlistView({super.key, required this.locationgroups});
 
   @override
   State<VerificationlistView> createState() => _VerificationlistViewState();
@@ -56,23 +57,62 @@ class _VerificationlistViewState extends State<VerificationlistView> {
             ),
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-              child: widget.assets.isNotEmpty
-                  ? ListView.builder(
-                shrinkWrap: true,
-                itemCount: widget.assets.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 5, top: 5),
-                    child: AssetCard(
-                      itemID: widget.assets[index].id,
-                      code: widget.assets[index].code,
-                      model: widget.assets[index].model,
-                      serialNo: widget.assets[index].serialNo,
-                      description: widget.assets[index].description,
+              child: widget.locationgroups.isNotEmpty
+                  ?
+              //itembuilders
+              ListView.builder(
+                itemCount: widget.locationgroups.length,
+                itemBuilder: (context, locationIndex) {
+                  final location = widget.locationgroups[locationIndex];
+
+                  return ExpansionTile(
+                    title: Text(
+                      widget.locationgroups[locationIndex].location,
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
+                    children: List.generate(
+                      widget.locationgroups[locationIndex].subLocations.length,
+                          (subIndex) {
+                        final subLocation = widget.locationgroups[locationIndex].subLocations[subIndex];
+
+                        return Padding(
+                          padding: const EdgeInsets.only(left: 16.0),
+                          child: ExpansionTile(
+                            title: Text(
+                              widget.locationgroups[locationIndex].subLocations[subIndex].name,
+                              style: TextStyle(fontWeight: FontWeight.w600),
+                            ),
+                              children: List.generate(
+                                widget.locationgroups[locationIndex].subLocations[subIndex].assets.length,
+                                    (assetIndex) {
+                                  final asset = widget.locationgroups[locationIndex].subLocations[subIndex].assets[assetIndex];
+
+                                  return Padding(
+                                    padding: const EdgeInsets.only(bottom: 10, top: 0),
+                                    child: AssetCard(
+                                      itemID: widget.locationgroups[locationIndex].subLocations[subIndex].assets[assetIndex].id,
+                                      code: widget.locationgroups[locationIndex].subLocations[subIndex].assets[assetIndex].code,
+                                      model: widget.locationgroups[locationIndex].subLocations[subIndex].assets[assetIndex].model,
+                                      serialNo: widget.locationgroups[locationIndex].subLocations[subIndex].assets[assetIndex].serialNo,
+                                      description: widget.locationgroups[locationIndex].subLocations[subIndex].assets[assetIndex].description,
+                                    ),
+                                  );
+                                },
+                              ),
+
+                          ),
+                        );
+                      },
+                    ),
+
+
                   );
                 },
               )
+
+
+
+
                   : Center(
                 child: Text(
                   'No any Item Records !!',

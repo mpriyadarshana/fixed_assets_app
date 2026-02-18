@@ -24,13 +24,13 @@ class ModifyItemEvent extends ItemEvent {
 class GetHistoryItemsEvent extends ItemEvent {}
 
 class AddHistoryItemEvent extends ItemEvent {
-  final Datum item;
+  final Asset item;
 
   AddHistoryItemEvent(this.item);
 }
 
 class RemoveHistoryItemEvent extends ItemEvent {
-  final Datum item;
+  final Asset item;
 
   RemoveHistoryItemEvent(this.item);
 }
