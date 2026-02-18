@@ -22,6 +22,7 @@ import 'package:permission_handler/permission_handler.dart';
 import '../../../utils/app_styles.dart';
 import '../bloc/assets/assets_bloc.dart';
 import '../bloc/verificationlist/verification_list_bloc.dart';
+import 'footer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -131,7 +132,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               Container(
                 width: double.infinity,
-                height: height * 0.9,
+                //height: 300,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(30),
@@ -210,143 +211,152 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         SizedBox(height: height * 0.06),
-                        Center(
-                          child: Wrap(
-                            spacing: 15,
-                            runSpacing: 15,
-                            children: [
-                              InkWell(
-                                onTap: () async {
-                                  if (await Permission.camera
-                                      .request()
-                                      .isGranted) {
-                                    final result = await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => const ScanView(),
-                                      ),
-                                    );
 
-                                    if (result != null) {
-                                      print('Scanned QR: $result');
-                                      setState(() {});
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              ItemDetailsView(
-                                                itemId: result as String,
-                                              ),
-                                        ),
-                                      );
-                                    }
-                                  }
-                                },
-                                child: Container(
-                                  height: 150,
-                                  width: 150,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(30),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black12.withOpacity(0.09),
-                                        blurRadius: 30,
-                                      ),
-                                    ],
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.only(bottom: 20, top: 20),
+                  child: Center(
+                      child: Wrap(
+                        spacing: 15,
+                        runSpacing: 15,
+                        children: [
+                          InkWell(
+                            onTap: () async {
+                              if (await Permission.camera
+                                  .request()
+                                  .isGranted) {
+                                final result = await Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const ScanView(),
                                   ),
-                                  child: Center(
-                                    child: Text(
-                                      'Scan',
-                                      style: AppStyles.mediumTextSize20White
-                                          .copyWith(
-                                              color: const Color(0xff5C5C5C)),
+                                );
+
+                                if (result != null) {
+                                  print('Scanned QR: $result');
+                                  setState(() {});
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          ItemDetailsView(
+                                            itemId: result as String,
+                                          ),
                                     ),
+                                  );
+                                }
+                              }
+                            },
+                            child: Container(
+                              height: 150,
+                              width: 150,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(30),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black12.withOpacity(0.09),
+                                    blurRadius: 30,
                                   ),
+                                ],
+                              ),
+                              child: Center(
+                                child: Text(
+                                  'Scan',
+                                  style: AppStyles.mediumTextSize20White
+                                      .copyWith(
+                                      color: const Color(0xff5C5C5C)),
                                 ),
                               ),
-                              InkWell(
-                                onTap: () async {
-                                  itembloc.add(GetHistoryItemsEvent());
-                                },
-                                child: Container(
-                                  height: 150,
-                                  width: 150,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(30),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black12.withOpacity(0.09),
-                                        blurRadius: 30,
-                                      ),
-                                    ],
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () async {
+                              itembloc.add(GetHistoryItemsEvent());
+                            },
+                            child: Container(
+                              height: 150,
+                              width: 150,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(30),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black12.withOpacity(0.09),
+                                    blurRadius: 30,
                                   ),
-                                  child: Center(
-                                    child: Text(
-                                      'History',
-                                      style: AppStyles.mediumTextSize20White
-                                          .copyWith(
-                                              color: const Color(0xff5C5C5C)),
-                                    ),
-                                  ),
+                                ],
+                              ),
+                              child: Center(
+                                child: Text(
+                                  'History',
+                                  style: AppStyles.mediumTextSize20White
+                                      .copyWith(
+                                      color: const Color(0xff5C5C5C)),
                                 ),
                               ),
-                              InkWell(
-                                onTap: () async {
-                                  verificationListBloc.add(GetVerificationListEvent(username: AppConstants.email));
-                                },
-                                child: Container(
-                                  height: 150,
-                                  width: 150,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(30),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black12.withOpacity(0.09),
-                                        blurRadius: 30,
-                                      ),
-                                    ],
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () async {
+                              verificationListBloc.add(GetVerificationListEvent(username: AppConstants.email));
+                            },
+                            child: Container(
+                              height: 150,
+                              width: 150,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(30),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black12.withOpacity(0.09),
+                                    blurRadius: 30,
                                   ),
-                                  child: Center(
-                                    child: Text(
-                                      'List',
-                                      style: AppStyles.mediumTextSize20White
-                                          .copyWith(
-                                          color: const Color(0xff5C5C5C)),
-                                    ),
-                                  ),
+                                ],
+                              ),
+                              child: Center(
+                                child: Text(
+                                  'List',
+                                  style: AppStyles.mediumTextSize20White
+                                      .copyWith(
+                                      color: const Color(0xff5C5C5C)),
                                 ),
                               ),
-                              InkWell(
-                                onTap: () async {
-                                  assetsbloc.add(GetAssetsEvent(username: AppConstants.email));
-                                },
-                                child: Container(
-                                  height: 150,
-                                  width: 150,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(30),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black12.withOpacity(0.09),
-                                        blurRadius: 30,
-                                      ),
-                                    ],
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () async {
+                              assetsbloc.add(GetAssetsEvent(username: AppConstants.email));
+                            },
+                            child: Container(
+                              height: 150,
+                              width: 150,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(30),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black12.withOpacity(0.09),
+                                    blurRadius: 30,
                                   ),
-                                  child: Center(
-                                    child: Text(
-                                      'Assets',
-                                      style: AppStyles.mediumTextSize20White
-                                          .copyWith(
-                                          color: const Color(0xff5C5C5C)),
-                                    ),
-                                  ),
+                                ],
+                              ),
+                              child: Center(
+                                child: Text(
+                                  'Assets',
+                                  style: AppStyles.mediumTextSize20White
+                                      .copyWith(
+                                      color: const Color(0xff5C5C5C)),
                                 ),
                               ),
-                              /*InkWell(
+                            ),
+                          ),
+                          InkWell(
                                 onTap: () {
                                   Navigator.push(
                                       context,
@@ -375,25 +385,13 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                   ),
                                 ),
-                              ),*/
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                              ),
+                        ],
+                      ),
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 20, top: 32),
-                child: Text(
-                  'ARTHUR C CLARKE INSTITUTE FOR MODERN\nTECHNOLOGIES (ACCIMT)',
-                  style: AppStyles.mediumTextSize10.copyWith(
-                    color: Colors.black.withOpacity(0.2),
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
+              const Footer(),
             ],
           ),
         ),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../utils/app_styles.dart';
 import '../widgets/custom_form_field.dart';
+import 'footer.dart';
 
 class IpConfigView extends StatefulWidget {
   const IpConfigView({super.key});
@@ -27,7 +28,7 @@ class _IpConfigViewState extends State<IpConfigView> {
           children: [
             Container(
               width: double.infinity,
-              height: height * 0.9,
+              height: height - 50,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(30),
@@ -86,16 +87,7 @@ class _IpConfigViewState extends State<IpConfigView> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 20, top: 32),
-              child: Text(
-                'ARTHUR C CLARKE INSTITUTE FOR MODERN\nTECHNOLOGIES (ACCIMT)',
-                style: AppStyles.mediumTextSize10.copyWith(
-                  color: Colors.black.withOpacity(0.2),
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
+            const Footer(),
           ],
         ),
       ),

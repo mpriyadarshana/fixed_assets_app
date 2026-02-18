@@ -10,6 +10,7 @@ import 'package:lottie/lottie.dart';
 
 import '../../../utils/app_styles.dart';
 import '../widgets/custom_form_field.dart';
+import 'footer.dart';
 
 class ItemEditView extends StatefulWidget {
   final String itemId;
@@ -113,11 +114,9 @@ class _ItemEditViewState extends State<ItemEditView> {
           ),
         ),
         body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
+          child: Container(
                 width: double.infinity,
-                height: height * 0.78,
+                height: double.infinity,
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius:
@@ -358,20 +357,6 @@ class _ItemEditViewState extends State<ItemEditView> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 30, bottom: 15),
-                child: Center(
-                  child: Text(
-                    'ARTHUR C CLARKE INSTITUTE FOR MODERN\nTECHNOLOGIES (ACCIMT)',
-                    style: AppStyles.mediumTextSize10.copyWith(
-                      color: Colors.black.withOpacity(0.2),
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-            ],
-          ),
         ),
       ),
     );

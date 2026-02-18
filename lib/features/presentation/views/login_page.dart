@@ -12,6 +12,7 @@ import 'package:lottie/lottie.dart';
 import '../../../utils/app_styles.dart';
 import '../../data/models/request/new_login_request.dart';
 import '../widgets/custom_form_field.dart';
+import 'footer.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -73,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               Container(
                 width: double.infinity,
-                height: height * 0.9,
+                height: height - 50,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(30),
@@ -90,6 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                                 .copyWith(color: const Color(0xff5C5C5C))),
                         SizedBox(height: height * 0.05),
                         Material(
+                          color: Colors.white, // change this
                           child: Form(
                             key: _formKey,
                             child: Column(
@@ -214,16 +216,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 20, top: 32),
-                child: Text(
-                  'ARTHUR C CLARKE INSTITUTE FOR MODERN\nTECHNOLOGIES (ACCIMT)',
-                  style: AppStyles.mediumTextSize10.copyWith(
-                    color: Colors.black.withOpacity(0.2),
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
+              const Footer(),
             ],
           ),
         ),

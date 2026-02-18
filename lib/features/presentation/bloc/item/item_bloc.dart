@@ -97,6 +97,7 @@ class ItemBloc extends Bloc<ItemEvent, ItemState> {
       emit(VerifyItemFailedState());
     }
   }
+
   Future<void> _getHistoryItems(
       GetHistoryItemsEvent event, Emitter<ItemState> emit) async {
     emit(ItemLoadingState());

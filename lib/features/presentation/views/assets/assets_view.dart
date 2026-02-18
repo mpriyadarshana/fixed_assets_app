@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../../utils/app_styles.dart';
 import '../../../data/models/model/asset.dart';
 import '../../../data/models/response/assets_reponse.dart';
+import '../footer.dart';
 
 class AppAssetsView extends StatefulWidget {
   final List<Asset> assets;
@@ -45,14 +46,12 @@ class _AssetsViewState extends State<AppAssetsView> {
           ),
         ),
       ),
-      body: Column(
-        children: [
-          Container(
+      body:
+        Container(
             width: double.infinity,
-            height: height * 0.78,
+            height: double.infinity,
             decoration: const BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
             ),
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: width * 0.05),
@@ -82,20 +81,6 @@ class _AssetsViewState extends State<AppAssetsView> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 30, bottom: 15),
-            child: Center(
-              child: Text(
-                'ARTHUR C CLARKE INSTITUTE FOR MODERN\nTECHNOLOGIES (ACCIMT)',
-                style: AppStyles.mediumTextSize10.copyWith(
-                  color: Colors.black.withOpacity(0.2),
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-        ],
-      ),
     );
   }
 }
