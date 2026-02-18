@@ -135,7 +135,10 @@ class _HomePageState extends State<HomePage> {
                 //height: 300,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(30),
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(20),
+                    bottomRight: Radius.circular(20),
+                  ),
                 ),
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: width * 0.06),
@@ -210,7 +213,7 @@ class _HomePageState extends State<HomePage> {
                             color: const Color(0xff5C5C5C),
                           ),
                         ),
-                        SizedBox(height: height * 0.06),
+                        SizedBox(height: height * 0.04),
 
                       ],
                     ),
