@@ -41,7 +41,7 @@ class VerificationListBloc extends Bloc<VerificationListEvent, VerificationListS
 
         List<dynamic> res = VerificationListResponse.fromJson(response.data).data;
         print("----------------------${response.statusCode}++++++++++++++++++++++++++++++++");
-        print(res);
+        //print(res);
 
         //await Repository.saveItem(res);
         emit(VerificationListGetSuccessfulState(verificationListResponse: res));

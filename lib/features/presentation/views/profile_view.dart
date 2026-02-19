@@ -32,9 +32,7 @@ class ProfileView extends StatelessWidget {
           ),
         ),
       ),
-      body: Column(
-        children: [
-          Container(
+      body: Container(
             width: double.infinity,
             height: double.infinity,
             decoration: const BoxDecoration(
@@ -78,9 +76,6 @@ class ProfileView extends StatelessWidget {
               ),
             ),
           ),
-          const Footer(),
-        ],
-      ),
     );
   }
 }

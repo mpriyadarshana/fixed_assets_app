@@ -37,7 +37,7 @@ class AssetsBloc extends Bloc<AssetsEvent, AssetsState> {
 
       if (response.statusCode == 200) {
 
-        print('Data : ${response.data['data'][0]}');
+        //print('Data : ${response.data['data'][0]}');
 
         List<Asset> res = AssetsDetailsResponse.fromJson(response.data).data;
         print("----------------------${response.statusCode}++++++++++++++++++++++++++++++++");
