@@ -11,8 +11,9 @@ class GetItemEvent extends ItemEvent {
 class VerifyItemEvent extends ItemEvent {
   final int itemId;
   final String date;
+  final String? remark;
 
-  VerifyItemEvent({required this.itemId, required this.date});
+  VerifyItemEvent({required this.itemId, required this.date, this.remark});
 }
 
 class ModifyItemEvent extends ItemEvent {

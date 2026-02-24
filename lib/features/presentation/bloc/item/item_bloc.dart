@@ -80,7 +80,7 @@ class ItemBloc extends Bloc<ItemEvent, ItemState> {
               itemId: event.itemId,
               verification: 'success',
               date: event.date,
-              remarks: ' '),
+              remarks: event.remark ?? ''),
         ),
       );
 

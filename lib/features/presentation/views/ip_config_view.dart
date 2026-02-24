@@ -18,7 +18,7 @@ class _IpConfigViewState extends State<IpConfigView> {
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
 
-    TextEditingController ipController = TextEditingController(text: '192.168.87.34');
+    TextEditingController ipController = TextEditingController();
 
     return Scaffold(
       backgroundColor: const Color(0xffc8c8c8),
@@ -67,7 +67,7 @@ class _IpConfigViewState extends State<IpConfigView> {
                         ),
                         onPressed: () async {
                           setState(() {
-                            AppConstants.ip = ipController.text;
+                            //AppConstants.ip = ipController.text;
                           });
 
                           Navigator.push(
