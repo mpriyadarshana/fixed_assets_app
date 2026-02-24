@@ -116,7 +116,7 @@ class _ItemEditViewState extends State<ItemEditView> {
         body: SingleChildScrollView(
           child: Container(
                 width: double.infinity,
-                height: double.infinity,
+                //height: double.infinity,
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius:
