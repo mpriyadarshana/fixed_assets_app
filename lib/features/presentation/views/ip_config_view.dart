@@ -1,7 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:fixed_assets_app/features/presentation/views/login_page.dart';
 import 'package:fixed_assets_app/utils/app_constants.dart';
-import 'package:flutter/material.dart';
-
 import '../../../utils/app_styles.dart';
 import '../widgets/custom_form_field.dart';
 import 'footer.dart';
@@ -14,17 +13,52 @@ class IpConfigView extends StatefulWidget {
 }
 
 class _IpConfigViewState extends State<IpConfigView> {
+  late TextEditingController _ipController;
+
+  @override
+  void initState() {
+    super.initState();
+    _ipController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _ipController.dispose();
+    super.dispose();
+  }
+
+  void _saveAndNavigate() {
+    FocusScope.of(context).unfocus(); // Hide keyboard
+
+    final String ip = _ipController.text.trim();
+
+    if (ip.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Please enter an IP address")),
+      );
+      return;
+    }
+
+    // Save IP
+    AppConstants.ip = ip;
+
+    // Navigate
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const LoginPage(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
-
-    TextEditingController ipController = TextEditingController();
 
     return Scaffold(
       backgroundColor: const Color(0xffc8c8c8),
       body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
               width: double.infinity,
@@ -38,20 +72,24 @@ class _IpConfigViewState extends State<IpConfigView> {
                 child: Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-
                     children: [
                       Text(
                         'Enter your local IP',
                         style: AppStyles.semiBoldTextSize14White.copyWith(
-                            fontWeight: FontWeight.w400, color: Colors.black),
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black,
+                        ),
                       ),
                       const SizedBox(height: 25),
+
                       CustomFormField(
                         prefixIconColor: const Color(0xff5C5C5C),
                         prefixIcon: const Icon(Icons.wifi),
-                        controller: ipController,
+                        controller: _ipController,
                       ),
+
                       const SizedBox(height: 80),
+
                       ElevatedButton(
                         style: const ButtonStyle(
                           padding: WidgetStatePropertyAll(
@@ -60,23 +98,11 @@ class _IpConfigViewState extends State<IpConfigView> {
                               vertical: 15,
                             ),
                           ),
-                          backgroundColor: WidgetStatePropertyAll(
-                            Colors.blue,
-                          ),
+                          backgroundColor:
+                          WidgetStatePropertyAll(Colors.blue),
                           elevation: WidgetStatePropertyAll(2),
                         ),
-                        onPressed: () async {
-                          setState(() {
-                            //AppConstants.ip = ipController.text;
-                          });
-
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const LoginPage(),
-                            ),
-                          );
-                        },
+                        onPressed: _saveAndNavigate,
                         child: Text(
                           'Continue',
                           style: AppStyles.mediumTextSize16White,

@@ -37,6 +37,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       );
 
       print('awaiting...');
+      print('${AppConstants.baseUrl}auth/user/login/');
        final res = await dio.post('${AppConstants.baseUrl}auth/user/login/',
            options: Options(
              headers: {"Content-Type": "application/json",
